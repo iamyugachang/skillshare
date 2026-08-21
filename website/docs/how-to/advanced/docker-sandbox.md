@@ -166,7 +166,7 @@ make playground-down
 |----------|-------------|---------------|
 | New contributor onboarding | `make playground` — one command, ready to go | No more "install Go, set PATH, clone, build" setup guide |
 | Automated skill quality gate in CI | `docker run ghcr.io/.../skillshare-ci audit /skills` | Previously required installing Go + building from source in every workflow |
-| "Works on my machine" across contributors | Docker pins Go 1.25.5 + all dependencies | Different local Go versions causing test flakes |
+| "Works on my machine" across contributors | Docker pins Go 1.25.13 + all dependencies | Different local Go versions causing test flakes |
 | PR reviewer reproducing an issue | `./scripts/test_docker.sh --cmd "go test -run TestXxx ..."` | Must clone + full local setup to reproduce |
 
 ### Enterprise and self-hosted deployment
@@ -405,7 +405,7 @@ Three Dockerfiles serve different purposes:
 |---|---|---|---|
 | **Image** | `ghcr.io/runkids/skillshare` | `ghcr.io/runkids/skillshare-ci` | Local build only |
 | **Dockerfile** | `docker/production/Dockerfile` | `docker/ci/Dockerfile` | `docker/sandbox/Dockerfile` |
-| **Base** | `debian:bookworm-slim` | `debian:bookworm-slim` | `golang:1.25.5-bookworm` |
+| **Base** | `debian:bookworm-slim` | `debian:bookworm-slim` | `golang:1.25.13-bookworm` |
 | **Includes** | git, curl, tini | git only | Go toolchain, gh, jq, air, delve, pre-built UI |
 | **Non-root** | Yes (UID 10001) | No | No |
 | **PID 1** | tini | default | default |
